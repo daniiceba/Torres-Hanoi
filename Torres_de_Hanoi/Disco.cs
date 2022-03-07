@@ -12,9 +12,12 @@ namespace Torres_de_Hanoi
 
         public Disco(int Valor)
         {
-            valor = Valor;
+            this.valor = Valor;
+        }
+        public override string ToString()
+        {
+            return valor.ToString();
         }
 
-        
     }
 }

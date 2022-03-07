@@ -17,31 +17,41 @@ namespace Torres_de_Hanoi
         /* TODO: Implementar métodos */
         public Pila(int n)
         {
-            for (int i = n; i < 0; i--)
+            Elementos = new List<Disco>();
+            for (int i = n; i > 0; i--)
             {
-                Disco pp = new Disco(n);
-                Elementos.Add(pp);
+                Disco p = new Disco(i);
+                Elementos.Add(p);
             }
         }
-        public Pila() {  }
+
+        public Pila() { 
+         Elementos = new List<Disco>();
+        }
 
         public int tamaño()
         {
-            try
+            if(this.isEmpty())
             {
-                return Elementos.Count();
-            }catch(Exception) { return 0; }
+                 return 0;
+               
+            }
+            else {  return Elementos.Count;}
             
         }
 
-        public int top_valor()
-            
+        public int top_valor() 
         {
-            try
+            if (this.isEmpty())
             {
-                return Elementos[Elementos.Count() - 1].valor;
+                return 0;
+                 
             }
-            catch (Exception) { return 0; }
+            else {
+                
+                return this.Elementos.Last().valor;
+                 
+            }
             
         }
 
@@ -52,19 +62,34 @@ namespace Torres_de_Hanoi
 
         public Disco pop()
         {
-            if (this.isEmpty()) { return null; }
-            
+           if(this.isEmpty())
+            {
+                return null;
+            }
             else
             {
-                Disco aux = Elementos[Elementos.Count - 1];
-                Elementos.RemoveAt(Elementos.Count - 1);   
-                return aux ;
+                Disco aux = this.Elementos.Last();  //Elementos[this.Elementos.Count - 1];
+                Elementos.RemoveAt(this.Elementos.Count - 1);   
+                return aux;
             }
+                
+           
+                
+            
         }                
 
         public bool isEmpty()
         {
-            if(Elementos.Count == 0) { return true; } else { return false; }
+            if(Elementos==null||Elementos.Count==0) { return true; } else { return false; }
+        }
+        public override string ToString()
+        {
+           String sol= "";
+            for(int i = 0; i < Elementos.Count; i++)
+            {
+                sol=sol+Elementos[i].ToString()+ ' ';
+            }
+            return sol;
         }
 
     }
